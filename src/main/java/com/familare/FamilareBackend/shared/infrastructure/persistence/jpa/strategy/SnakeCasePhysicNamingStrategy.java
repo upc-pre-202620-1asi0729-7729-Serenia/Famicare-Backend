@@ -1,4 +1,4 @@
-package com.acme.familarebackend.shared.infrastructure.persistence.jpa.strategy;
+package com.familare.FamilareBackend.shared.infrastructure.persistence.jpa.strategy;
 
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;

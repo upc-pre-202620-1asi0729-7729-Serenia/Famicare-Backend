@@ -1,4 +1,4 @@
-package com.acme.familarebackend.shared.application.result;
+package com.familare.FamilareBackend.shared.application.result;
 
 import java.util.Optional;
 import java.util.function.Function;
