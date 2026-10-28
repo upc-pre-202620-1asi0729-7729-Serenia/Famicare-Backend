@@ -1,4 +1,4 @@
-package com.familare.FamilareBackend.shared.application.result;
+package com.famicare.FamicareBackend.shared.application.result;
 
 import java.util.Optional;
 import java.util.function.Function;

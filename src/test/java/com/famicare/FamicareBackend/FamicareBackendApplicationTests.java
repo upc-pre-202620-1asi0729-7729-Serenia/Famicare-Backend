@@ -1,10 +1,10 @@
-package com.familare.FamilareBackend;
+package com.famicare.FamicareBackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FamilareBackendApplicationTests {
+class FamicareBackendApplicationTests {
 
     @Test
     void contextLoads() {

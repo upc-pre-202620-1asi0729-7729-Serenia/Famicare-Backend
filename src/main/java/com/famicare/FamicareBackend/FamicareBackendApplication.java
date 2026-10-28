@@ -1,13 +1,13 @@
-package com.familare.FamilareBackend;
+package com.famicare.FamicareBackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FamilareBackendApplication {
+public class FamicareBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FamilareBackendApplication.class, args);
+        SpringApplication.run(FamicareBackendApplication.class, args);
     }
 
 }

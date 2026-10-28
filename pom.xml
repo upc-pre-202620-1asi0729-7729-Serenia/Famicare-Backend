@@ -8,11 +8,11 @@
         <version>4.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.acme</groupId>
-    <artifactId>familare-backend</artifactId>
+    <groupId>com.</groupId>
+    <artifactId>famicare-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>familare-backend</name>
-    <description>familare-backend</description>
+    <name>famicare-backend</name>
+    <description>famicare-backend</description>
     <url/>
     <licenses>
         <license>

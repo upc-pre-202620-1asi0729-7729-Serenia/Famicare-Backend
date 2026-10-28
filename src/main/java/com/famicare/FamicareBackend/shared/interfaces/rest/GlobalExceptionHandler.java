@@ -1,4 +1,4 @@
-package com.familare.FamilareBackend.shared.interfaces.rest;
+package com.famicare.FamicareBackend.shared.interfaces.rest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
