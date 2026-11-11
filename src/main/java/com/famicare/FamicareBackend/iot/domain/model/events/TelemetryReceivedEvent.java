@@ -10,7 +10,7 @@ import java.time.Instant;
 /**
  * Domain event raised when a paired device sends telemetry. Other bounded contexts
  * (Monitor, Zones) can react to it to store locations, evaluate safe zones or raise
- * risk alerts (panic, low battery, inactivity) without the IoT context knowing about them.
+ * risk monitor (panic, low battery, inactivity) without the IoT context knowing about them.
  */
 public record TelemetryReceivedEvent(
         Long deviceId,
