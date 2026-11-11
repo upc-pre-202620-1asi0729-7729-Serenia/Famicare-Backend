@@ -15,7 +15,7 @@
     <description>famicare-backend</description>
 
     <properties>
-        <java.version>27</java.version>
+        <java.version>26</java.version>
         <lombok.version>1.18.48</lombok.version>
         <mysql.version>26.7.0</mysql.version>
         <springdoc.version>3.1.1</springdoc.version>
@@ -79,7 +79,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <release>${java.version}</release>
+                    <release>26</release>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
