@@ -27,7 +27,7 @@ import java.time.Instant;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"elderly_profile_id", "name"}, name = SafeZone.NAME_UNIQUE_CONSTRAINT)
         })
-public class gSafeZone extends AbstractAggregateRoot<SafeZone> {
+public class SafeZone extends AbstractAggregateRoot<SafeZone> {
     public static final String NAME_UNIQUE_CONSTRAINT = "uk_safe_zones_elderly_profile_name";
 
     @Id
