@@ -1,4 +1,4 @@
-package com.famicare.FamicareBackend.zones.domain.model.valuesobjects;
+package com.famicare.FamicareBackend.zones.domain.model.valueobjects;
 
 /**
  * Value object representing the radius, in meters, of a circular safe zone.

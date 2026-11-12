@@ -1,4 +1,4 @@
-package com.famicare.FamicareBackend.zones.domain.model.valuesobjects;
+package com.famicare.FamicareBackend.zones.domain.model.valueobjects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

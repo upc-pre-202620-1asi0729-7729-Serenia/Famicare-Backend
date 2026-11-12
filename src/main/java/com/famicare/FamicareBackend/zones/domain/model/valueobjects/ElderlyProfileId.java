@@ -1,4 +1,4 @@
-package com.famicare.FamicareBackend.zones.domain.model.valuesobjects;
+package com.famicare.FamicareBackend.zones.domain.model.valueobjects;
 
 /**
  * Value object referencing an elderly profile owned by the Care bounded context.

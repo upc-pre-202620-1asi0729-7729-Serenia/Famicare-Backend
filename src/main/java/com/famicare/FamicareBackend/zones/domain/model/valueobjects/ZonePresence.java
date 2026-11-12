@@ -1,4 +1,4 @@
-package com.famicare.FamicareBackend.zones.domain.model.valuesobjects;
+package com.famicare.FamicareBackend.zones.domain.model.valueobjects;
 
 /**
  * Where the last known coordinate of an elderly person stands relative to a safe zone

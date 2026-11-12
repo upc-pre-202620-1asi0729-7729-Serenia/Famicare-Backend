@@ -1,4 +1,4 @@
-package com.famicare.FamicareBackend.zones.domain.model.valuesobjects;
+package com.famicare.FamicareBackend.zones.domain.model.valueobjects;
 
 /**
  * Value object representing the name a caregiver gives to a safe zone (for example "Casa").
