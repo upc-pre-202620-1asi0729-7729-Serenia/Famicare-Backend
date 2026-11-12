@@ -1,7 +1,10 @@
 package com.famicare.FamicareBackend.subscription.domain.model.aggregates;
 
 import com.famicare.FamicareBackend.subscription.domain.model.commands.CreateSubscriptionCommand;
-import com.famicare.FamicareBackend.subscription.domain.model.valueobjects.*;
+import com.famicare.FamicareBackend.subscription.domain.model.valueobjects.PaymentMethod;
+import com.famicare.FamicareBackend.subscription.domain.model.valueobjects.PlanType;
+import com.famicare.FamicareBackend.subscription.domain.model.valueobjects.SubscriptionStatus;
+import com.famicare.FamicareBackend.subscription.domain.model.valueobjects.UserId;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
