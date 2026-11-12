@@ -11,9 +11,8 @@ import com.famicare.FamicareBackend.monitor.domain.model.valueobjects.ElderlyPro
 import com.famicare.FamicareBackend.monitor.interfaces.rest.resources.AlertResource;
 import com.famicare.FamicareBackend.monitor.interfaces.rest.resources.AttendAlertResource;
 import com.famicare.FamicareBackend.monitor.interfaces.rest.resources.CreateAlertResource;
-import com.famicare.FamicareBackend.monitor.interfaces.rest.transform.AlertResourceFromEntityAssembler;
-import com.famicare.FamicareBackend.monitor.interfaces.rest.transform.AttendAlertCommandFromResourceAssembler;
-import com.famicare.FamicareBackend.monitor.interfaces.rest.transform.CreateAlertCommandFromResourceAssembler;
+import com.famicare.FamicareBackend.monitor.interfaces.rest.transform.AlertAssembler;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/monitor")
+@RequestMapping("/api/v1/alerts")
 @Tag(name = "Alerts", description = "Alerts endpoints")
 public class AlertsController {
 
@@ -36,17 +35,17 @@ public class AlertsController {
 
     @PostMapping
     public ResponseEntity<AlertResource> createAlert(@RequestBody CreateAlertResource resource) {
-        var command = CreateAlertCommandFromResourceAssembler.toCommandFromResource(resource);
+        var command = AlertAssembler.toCommandFromResource(resource);
         var alert = alertCommandService.handle(command);
-        return alert.map(a -> new ResponseEntity<>(AlertResourceFromEntityAssembler.toResourceFromEntity(a), HttpStatus.CREATED))
+        return alert.map(a -> new ResponseEntity<>(AlertAssembler.toResourceFromEntity(a), HttpStatus.CREATED))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @GetMapping("/{alertId}")
-    public ResponseEntity<AlertResource> getAlertById(@PathVariable Long alertId) {
-        var query = new GetAlertByIdQuery(alertId);
-        var alert = alertQueryService.handle(query);
-        return alert.map(a -> ResponseEntity.ok(AlertResourceFromEntityAssembler.toResourceFromEntity(a)))
+    @GetMapping("/{id}")
+    public ResponseEntity<AlertResource> getAlertById(@PathVariable Long id) {
+        var query = new GetAlertByIdQuery(id);
+        return alertQueryService.handle(query)
+                .map(a -> ResponseEntity.ok(AlertAssembler.toResourceFromEntity(a)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -55,42 +54,42 @@ public class AlertsController {
             @RequestParam Long elderlyProfileId,
             @RequestParam(required = false) String status) {
 
-        var profileId = new ElderlyProfileId(elderlyProfileId);
         List<AlertResource> resources;
-
         if (status != null && !status.isBlank()) {
-            var alertStatus = AlertStatus.valueOf(status.toUpperCase());
-            var query = new GetAlertsByElderlyProfileIdAndStatusQuery(profileId, alertStatus);
-            resources = alertQueryService.handle(query)
-                    .stream()
-                    .map(AlertResourceFromEntityAssembler::toResourceFromEntity)
+            var query = new GetAlertsByElderlyProfileIdAndStatusQuery(
+                    new ElderlyProfileId(elderlyProfileId),
+                    AlertStatus.valueOf(status.toUpperCase())
+            );
+            resources = alertQueryService.handle(query).stream()
+                    .map(AlertAssembler::toResourceFromEntity)
                     .toList();
         } else {
-            var query = new GetAlertsByElderlyProfileIdQuery(profileId);
-            resources = alertQueryService.handle(query)
-                    .stream()
-                    .map(AlertResourceFromEntityAssembler::toResourceFromEntity)
+            var query = new GetAlertsByElderlyProfileIdQuery(
+                    new ElderlyProfileId(elderlyProfileId)
+            );
+            resources = alertQueryService.handle(query).stream()
+                    .map(AlertAssembler::toResourceFromEntity)
                     .toList();
         }
 
         return ResponseEntity.ok(resources);
     }
 
-    @PatchMapping("/{alertId}/attend")
+    @PatchMapping("/{id}/attend")
     public ResponseEntity<AlertResource> attendAlert(
-            @PathVariable Long alertId,
-            @RequestBody AttendAlertResource resource) {
-        var command = AttendAlertCommandFromResourceAssembler.toCommandFromResource(alertId, resource);
+            @PathVariable Long id,
+            @RequestBody(required = false) AttendAlertResource resource) {
+        var command = AlertAssembler.toCommandFromResource(id, resource);
         var alert = alertCommandService.handle(command);
-        return alert.map(a -> ResponseEntity.ok(AlertResourceFromEntityAssembler.toResourceFromEntity(a)))
+        return alert.map(a -> ResponseEntity.ok(AlertAssembler.toResourceFromEntity(a)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{alertId}/resolve")
-    public ResponseEntity<AlertResource> resolveAlert(@PathVariable Long alertId) {
-        var command = new ResolveAlertCommand(alertId);
+    @PatchMapping("/{id}/resolve")
+    public ResponseEntity<AlertResource> resolveAlert(@PathVariable Long id) {
+        var command = new ResolveAlertCommand(id);
         var alert = alertCommandService.handle(command);
-        return alert.map(a -> ResponseEntity.ok(AlertResourceFromEntityAssembler.toResourceFromEntity(a)))
+        return alert.map(a -> ResponseEntity.ok(AlertAssembler.toResourceFromEntity(a)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
