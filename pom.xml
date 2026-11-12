@@ -15,7 +15,7 @@
     <description>famicare-backend</description>
 
     <properties>
-        <java.version>26</java.version>
+        <java.version>17</java.version>
         <lombok.version>1.18.48</lombok.version>
         <mysql.version>26.7.0</mysql.version>
         <springdoc.version>3.1.1</springdoc.version>
@@ -70,6 +70,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -79,7 +84,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <release>26</release>
+                    <release>${java.version}</release>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
