@@ -4,9 +4,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public sealed interface Result<T, E> permits Result.Logrado, Result.Fallido {
-    //COMPLETADO
     static <T,E> Result<T, E> logrado(T value) { return new Logrado<>(value); }
-    //ERROR
     static <T,E> Result<T, E> fallido(E error) { return new Fallido<>(error); }
 
     record Logrado<T,E> (T value) implements Result<T, E> {}
