@@ -53,7 +53,6 @@ public class Device extends AbstractAggregateRoot<Device> {
     @Column(nullable = false, length = 20)
     private DeviceStatus status;
 
-    @Column(columnDefinition = "tinyint")
     @Convert(converter = BatteryLevelAttributeConverter.class)
     private BatteryLevel batteryLevel;
 
