@@ -39,7 +39,6 @@ public class TelemetryEvent extends AbstractAggregateRoot<TelemetryEvent> {
     @Embedded
     private Coordinates coordinates;
 
-    @Column(columnDefinition = "tinyint")
     @Convert(converter = BatteryLevelAttributeConverter.class)
     private BatteryLevel batteryLevel;
 
